@@ -12,7 +12,7 @@ deployment:
     commands:
       - bundle exec middleman build --verbose
       - bundle exec middleman s3_sync --bucket=staging-fove
-      - STAGING_CLOUD_DISTRIBUTION_ID= bundle exec middleman invalidate
+      - STAGING_CLOUDFRONT_DISTRIBUTION_ID= bundle exec middleman invalidate
       # Example for cross browser testing:
       #- bundle exec rake cross_browser:chrome BS_USERNAME=$BS_USERNAME BS_AUTHKEY=$BS_AUTHKEY
 
@@ -21,4 +21,4 @@ deployment:
     commands:
       - bundle exec middleman build --verbose
       - bundle exec middleman s3_sync --bucket=production-fove
-      - PRODUCTION_CLOUD_DISTRIBUTION_ID= bundle exec middleman invalidate
+      - PRODUCTION_CLOUDFRONT_DISTRIBUTION_ID= bundle exec middleman invalidate
