@@ -38,6 +38,8 @@
 # Reload the browser automatically whenever files change
 configure :development do
   activate :livereload
+  activate :autoprefixer
+  activate :sprockets
 end
 
 # Methods defined in the helpers block are available in templates
@@ -47,11 +49,11 @@ end
 #   end
 # end
 
-set :css_dir, 'stylesheets'
+set :css_dir, 'assets/stylesheets'
 
-set :js_dir, 'javascripts'
+set :js_dir, 'assets/javascripts'
 
-set :images_dir, 'images'
+set :images_dir, 'assets/images'
 
 # Build-specific configuration
 configure :build do

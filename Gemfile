@@ -13,11 +13,19 @@ gem "wdm", "~> 0.1.0", :platforms => [:mswin, :mingw]
 # Windows does not come with time zone data
 gem "tzinfo-data", platforms: [:mswin, :mingw]
 
+# Boostrap SASS
+gem "bootstrap-sass", :require => false
 
-# syncs middleman with AWS S3
+# Automatically add vendor prefixes to CSS rules in stylesheets
+gem 'middleman-autoprefixer'
+
+# Adds JQuery (for now until AngularJS is here)
+gem "jquery-middleman"
+
+# AWS S3 Bucket
 gem 'middleman-s3_sync'
 
-# Cloudfront cache invalidation
+# AWS Cloudfront cache invalidation
 gem "middleman-cloudfront"
 
 # For specifying multiple browsers for testing, browsers.json
