@@ -72,7 +72,7 @@ configure :build do
 end
 
 
-#ENV = YAML::load(File.open('aws.yml'))
+# ENV = YAML::load(File.open('aws.yml'))
 
 # Configuration code for Middleman AWS S3 Sync
 activate :s3_sync do |s3_sync|
@@ -80,7 +80,7 @@ activate :s3_sync do |s3_sync|
   s3_sync.region                     = 'us-west-1'     # The AWS region for your bucket.
   s3_sync.aws_access_key_id          = ENV['AWS_ACCESS_KEY_ID']
   s3_sync.aws_secret_access_key      = ENV['AWS_SECRET_KEY']
-  # s3_sync.delete                     = false # Defaults to true. We DON't delete stray files by default. This is for Typography.com fonts
+  #s3_sync.delete                     = true # We delete stray files by default.
   #s3_sync.after_build                = true # We do not chain after the build step by default.
 end
 
