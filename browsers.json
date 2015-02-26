@@ -1,0 +1,22 @@
+{
+   "chrome": {
+      "human": "Chrome 33 on OS X Yosemite",
+      "browser_version":"33.0",
+      "browser":"chrome",
+      "os":"OS X",
+      "os_version":"Yosemite",
+      "browserName": "null",
+      "platform": "null",
+      "device": "null"
+   },
+   "iphone_6": {
+      "human": "iPhone 6 on iOS 8 with Safari",
+      "os":"iOS",
+      "os_version":"8.0",
+      "browser":"Mobile Safari",
+      "browser_version":"null",
+      "browserName": "iPhone",
+      "platform": "MAC",
+      "device": "iPhone 6"
+   }
+}
