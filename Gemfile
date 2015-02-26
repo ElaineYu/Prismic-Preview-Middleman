@@ -19,6 +19,9 @@ gem "bootstrap-sass", :require => false
 # Automatically add vendor prefixes to CSS rules in stylesheets
 gem 'middleman-autoprefixer'
 
+# Adds JQuery (for now until AngularJS is here)
+gem "jquery-middleman"
+
 # AWS S3 Bucket
 gem 'middleman-s3_sync'
 
