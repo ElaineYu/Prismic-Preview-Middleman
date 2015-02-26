@@ -13,6 +13,8 @@ gem "wdm", "~> 0.1.0", :platforms => [:mswin, :mingw]
 # Windows does not come with time zone data
 gem "tzinfo-data", platforms: [:mswin, :mingw]
 
+# Boostrap SASS
+gem "bootstrap-sass", :require => false
 
 # syncs middleman with AWS S3
 gem 'middleman-s3_sync'
