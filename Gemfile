@@ -16,10 +16,13 @@ gem "tzinfo-data", platforms: [:mswin, :mingw]
 # Boostrap SASS
 gem "bootstrap-sass", :require => false
 
-# syncs middleman with AWS S3
+# Automatically add vendor prefixes to CSS rules in stylesheets
+gem 'middleman-autoprefixer'
+
+# AWS S3 Bucket
 gem 'middleman-s3_sync'
 
-# Cloudfront cache invalidation
+# AWS Cloudfront cache invalidation
 gem "middleman-cloudfront"
 
 # For specifying multiple browsers for testing, browsers.json
