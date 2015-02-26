@@ -4,16 +4,16 @@ Rainfactory Crowdfunding Campaign site
 *CircleCi Status, Master Branch*
 [![Circle CI](https://circleci.com/gh/monsoonco/FOVe/tree/master.svg?style=svg&circle-token=7d0f2a543ee44c20ae9e8194a707677178402f8a)](https://circleci.com/gh/monsoonco/FOVe/tree/master)
 
-
 *CirclCi Status, Develop Branch*
+[![Circle CI](https://circleci.com/gh/monsoonco/FOVe/tree/develop.svg?style=svg&circle-token=00455eff16cb89334e05788a3ddd300ec798e061)](https://circleci.com/gh/monsoonco/FOVe/tree/develop)
 
-
-*Staging Urls*
+**Staging Urls**
 * *S3 Bucket*: staging-fove.s3-website-us-west-1.amazonaws.com
-* *Cloudfront*:
+* *Cloudfront*: didpsqvujxdlo.cloudfront.net
 
-*Production Urls*
-*
+**Production Urls**
+* *S3 Bucket*: production-fove.s3-website-us-west-1.amazonaws.com
+* *Cloudfront*: d2rbbz6hr34o3y.cloudfront.net
 
 #####  Ingredients
 * AWS S3 + Cloudfront
@@ -21,6 +21,7 @@ Rainfactory Crowdfunding Campaign site
 * Boostrap-SASS
 * Angular
 * Continuous integration with CircleCI
+* Cross browser testing with Browserstack + Cucumber + Capybara + Selenium-Webdriver
 
 ##### Local Setup
 
@@ -63,7 +64,7 @@ Rainfactory Crowdfunding Campaign site
 
    <code> bundle exec middleman build --verbose </code>
 
-   <code> bundle exec middleman s3_sync --bucket=staging-swyp </code>
+   <code> bundle exec middleman s3_sync --bucket=staging-fove </code>
 
    <code> STAGING_CLOUDFRONT_DISTRIBUTION_ID= bundle exec middleman invalidate </code>
 
