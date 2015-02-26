@@ -12,3 +12,22 @@ gem "wdm", "~> 0.1.0", :platforms => [:mswin, :mingw]
 
 # Windows does not come with time zone data
 gem "tzinfo-data", platforms: [:mswin, :mingw]
+
+
+# syncs middleman with AWS S3
+gem 'middleman-s3_sync'
+
+# Cloudfront cache invalidation
+gem "middleman-cloudfront"
+
+# For specifying multiple browsers for testing, browsers.json
+gem 'json'
+
+group :development do
+  gem "rake"
+  gem "rspec"
+  gem "capybara"
+  gem "rspec-expectations"
+  gem "selenium-webdriver"
+  gem 'cucumber'
+end
