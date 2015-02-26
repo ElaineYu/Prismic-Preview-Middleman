@@ -1,0 +1,15 @@
+dependencies:
+  cache_directories:
+    - "~/.rvm/gems/ruby-2.0.0-p451"
+
+# test:
+#   override:
+#     - bundle exec rake i_say tomato=tomahto
+
+# deployment:
+#   staging:
+#     branch: develop
+#     commands:
+#       - bundle exec middleman build --verbose
+#       - bundle exec middleman s3_sync --bucket=staging-fove
+#       - STAGING_CLOUD_DISTRIBUTION_ID= bundle exec middleman invalidate
