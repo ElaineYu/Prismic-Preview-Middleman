@@ -9,7 +9,8 @@ Rainfactory Crowdfunding Campaign site
 
 
 *Staging Urls*
-*
+* *S3 Bucket*: staging-fove.s3-website-us-west-1.amazonaws.com
+* *Cloudfront*:
 
 *Production Urls*
 *
