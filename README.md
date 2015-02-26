@@ -53,7 +53,7 @@ Rainfactory Crowdfunding Campaign site
 
 7. **Setup your CircleCI**
    * Setup Github account with Circle CI (circleci.com)
-   * Go to 'Add Projects' and add **FOVe**
+   * Go to **Add Projects** and add **FOVe**
    * Watch CircleCI deploy your code!  :D
 
 8. **If you need to experiment with pushing assets to AWS S3 locally,** you can do the following:
@@ -99,7 +99,9 @@ You can also run tests from your console:
 2. To test only one browser or device one at a time, specify the main key name from browsers.json:
 
    For a Google Chrome browser test:
+
    <code> rake cross_browser:chrome BS_USERNAME=XXXXX BS_AUTHKEY=XXXXXXXXX </code>
 
    For an iPhone 6 mobile Safari test:
+
    <code> rake cross_browser:iphone_6 BS_USERNAME=XXXXX BS_AUTHKEY=XXXXXXXXX </code>
