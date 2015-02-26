@@ -6,10 +6,19 @@ dependencies:
 #   override:
 #     - bundle exec rake i_say tomato=tomahto
 
-# deployment:
-#   staging:
-#     branch: develop
-#     commands:
-#       - bundle exec middleman build --verbose
-#       - bundle exec middleman s3_sync --bucket=staging-fove
-#       - STAGING_CLOUD_DISTRIBUTION_ID= bundle exec middleman invalidate
+deployment:
+  staging:
+    branch: develop
+    commands:
+      - bundle exec middleman build --verbose
+      - bundle exec middleman s3_sync --bucket=staging-fove
+      - STAGING_CLOUD_DISTRIBUTION_ID= bundle exec middleman invalidate
+      # Example for cross browser testing:
+      #- bundle exec rake cross_browser:chrome BS_USERNAME=$BS_USERNAME BS_AUTHKEY=$BS_AUTHKEY
+
+  production:
+    branch: master
+    commands:
+      - bundle exec middleman build --verbose
+      - bundle exec middleman s3_sync --bucket=production-fove
+      - PRODUCTION_CLOUD_DISTRIBUTION_ID= bundle exec middleman invalidate
