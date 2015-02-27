@@ -31,6 +31,9 @@ gem "middleman-cloudfront"
 # For specifying multiple browsers for testing, browsers.json
 gem 'json'
 
+# Ruby prismic
+gem 'prismic.io', require: 'prismic'
+
 group :development do
   gem "rake"
   gem "rspec"

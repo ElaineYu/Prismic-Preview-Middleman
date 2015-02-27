@@ -1,3 +1,10 @@
+require 'prismic'
+Dir["source/config_modules/*"].each {|file| require file }
+helpers ViewHelpers
+helpers PrismicHelpers
+# PRISMIC
+helpers FaqPrismic
+faq_prismic
 ###
 # Compass
 ###
