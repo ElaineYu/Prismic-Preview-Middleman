@@ -9,15 +9,15 @@ module FaqPrismic
      .submit(api.master_ref)
 
     @faq = response_faq.results
-
-    # @faq.each do |doc|
-    #     puts "hey"
-    #   puts doc["faq.title"].value
-    #   puts doc["faq.order"].value
-    #   doc["faq.qa"].group_documents.each do |segment|
-    #     puts segment.fragments["question"].value
-    #     puts segment.fragments["answer"].value
-    #   end
-    # end
+    puts @faq.inspect
+    @faq.each do |doc|
+        puts "hey"
+      puts doc["faq.title"].value
+      puts doc["faq.order"].value
+      doc["faq.qa"].group_documents.each do |segment|
+        puts segment.fragments["question"].value
+        puts segment.fragments["answer"].value
+      end
+    end
   end
 end
