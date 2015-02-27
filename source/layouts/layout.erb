@@ -15,5 +15,8 @@
 
   <body class="<%= page_classes %>">
     <%= yield %>
+
+    <% # This file is required for Experiments and Previews. %>
+    <script src="//static.cdn.prismic.io/prismic.min.js"></script>
   </body>
 </html>
