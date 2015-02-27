@@ -126,8 +126,12 @@ end
 
 require 'sinatra'
 
+map "/preview" do
+  run PrismicRuby
+end
+
 class PrismicRuby < Sinatra::Base
-  get '/preview' do
+  get '' do
     # preview_token = params[:token]
     # redirect_url = api.preview_session(preview_token, link_resolver(), '/')
     # cookies[Prismic::PREVIEW_COOKIE] = { value: preview_token, expires: 30.minutes.from_now }
@@ -135,7 +139,7 @@ class PrismicRuby < Sinatra::Base
     puts "Preview endpoint is working"
     "Preview endpoint is working"
     puts "////////////////////////////////////"
-    # redirect '/'
+    redirect '/'
   end
 
   # If something goes wrong, it could be because of an invalid preview token
