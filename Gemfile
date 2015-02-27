@@ -31,6 +31,9 @@ gem "middleman-cloudfront"
 # For specifying multiple browsers for testing, browsers.json
 gem 'json'
 
+# To create routes
+gem 'sinatra'
+
 # Ruby prismic
 gem 'prismic.io', require: 'prismic'
 
