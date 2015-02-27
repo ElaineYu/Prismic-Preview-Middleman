@@ -112,3 +112,50 @@ end
 after_s3_sync do |files_by_status|
   invalidate files_by_status[:updated]
 end
+
+
+# PRISMIC PREVIEW EXPERIMENT
+
+  ######## CREATE A PREVIEW ENDPOINT ##############
+
+  # This is a special URL of your website that prismic will call to request a preview, passing the preview token in the query string. You will configure this URL in the settings of your repository.
+  # When requested this endpoint must:
+  # Retrieve the preview token looking at the token parameter in the query string.
+  # Call the prismic.io development kit with this token and the linkResolver to retrieve the best URL for this preview.
+  # Store the preview token in the io.prismic.preview cookie (typically for 30 minutes max, since the token will expire after that), and redirect to the given URL.
+
+require 'sinatra'
+
+class PrismicRuby < Sinatra::Base
+  get '/preview' do
+    # preview_token = params[:token]
+    # redirect_url = api.preview_session(preview_token, link_resolver(), '/')
+    # cookies[Prismic::PREVIEW_COOKIE] = { value: preview_token, expires: 30.minutes.from_now }
+    puts "////////////////////////////////////"
+    puts "Preview endpoint is working"
+    "Preview endpoint is working"
+    puts "////////////////////////////////////"
+    # redirect '/'
+  end
+
+  # If something goes wrong, it could be because of an invalid preview token
+  def clearcookies
+    cookies.delete Prismic::PREVIEW_COOKIE
+    redirect '/'
+  end
+
+  # Setting @ref as the actual ref id being queried, even if it's the master ref.
+  # To be used to call the API, for instance: api.form('everything').submit(ref)
+  def ref
+    @ref ||= preview_ref || api.master_ref.ref
+  end
+
+  def preview_ref
+    if request.cookies.has_key?(Prismic::PREVIEW_COOKIE)
+      request.cookies[Prismic::PREVIEW_COOKIE]
+    else
+      nil
+    end
+  end
+
+end
