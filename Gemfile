@@ -31,8 +31,11 @@ gem "middleman-cloudfront"
 # For specifying multiple browsers for testing, browsers.json
 gem 'json'
 
-# To create routes
-gem 'sinatra'
+# Extension support for Sinatra
+gem 'sinatra', :git => 'git@github.com:sinatra/sinatra.git'
+gem 'sinatra-base'
+gem 'sinatra-contrib'
+gem 'activesupport', :require => false
 
 # Ruby prismic
 gem 'prismic.io', require: 'prismic'
