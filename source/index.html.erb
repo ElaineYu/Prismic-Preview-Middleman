@@ -1,3 +1,12 @@
 <div>
-  <h1>FOVe</h1>
+  <h1><%= make_a_link("http://fove-inc.com", "FOVe") %></h1>
+
+  <!-- PRISMIC PREVIEW TEST -->
+  <% @faq.each do |doc| %>
+   <% doc["faq.qa"].group_documents.each do |segment| %>
+      <%= segment.fragments["question"].value %>
+      <%= segment.fragments["answer"].value %>
+   <% end %>
+  <% end %>
+  <!-- PRISMIC PREVIEW TEST END  -->
 </div>

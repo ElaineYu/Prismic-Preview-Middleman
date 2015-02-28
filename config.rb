@@ -1,3 +1,10 @@
+require 'prismic'
+Dir["source/config_modules/*"].each {|file| require file }
+helpers ViewHelpers
+helpers PrismicHelpers
+# PRISMIC
+helpers FaqPrismic
+faq_prismic
 ###
 # Compass
 ###
@@ -35,11 +42,18 @@
 # Automatic image dimensions on image_tag helper
 # activate :automatic_image_sizes
 
+# Create pretty urls
+activate :directory_indexes
+
+# Sprockets
+activate :sprockets
+
+# Middleman autoprefixer
+activate :autoprefixer
+
 # Reload the browser automatically whenever files change
 configure :development do
   activate :livereload
-  activate :autoprefixer
-  activate :sprockets
 end
 
 # Methods defined in the helpers block are available in templates
