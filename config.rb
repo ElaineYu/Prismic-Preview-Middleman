@@ -5,6 +5,9 @@ helpers PrismicHelpers
 # PRISMIC
 helpers FaqPrismic
 faq_prismic
+
+helpers MainArticlePrismic
+main_article_prismic
 ###
 # Compass
 ###
@@ -116,34 +119,78 @@ end
 
 # PRISMIC PREVIEW EXPERIMENT
 
-  ######## CREATE A PREVIEW ENDPOINT ##############
+######## CREATE A PREVIEW ENDPOINT ##############
 
-  # This is a special URL of your website that prismic will call to request a preview, passing the preview token in the query string. You will configure this URL in the settings of your repository.
-  # When requested this endpoint must:
-  # Retrieve the preview token looking at the token parameter in the query string.
-  # Call the prismic.io development kit with this token and the linkResolver to retrieve the best URL for this preview.
-  # Store the preview token in the io.prismic.preview cookie (typically for 30 minutes max, since the token will expire after that), and redirect to the given URL.
+# This is a special URL of your website that prismic will call to request a preview, passing the preview token in the query string. You will configure this URL in the settings of your repository.
+# When requested this endpoint must:
+# Retrieve the preview token looking at the token parameter in the query string.
+# Call the prismic.io development kit with this token and the linkResolver to retrieve the best URL for this preview.
+# Store the preview token in the io.prismic.preview cookie (typically for 30 minutes max, since the token will expire after that), and redirect to the given URL.
 
 require 'sinatra'
+require 'sinatra/base'
+require 'sinatra/contrib/all'
+require "sinatra/cookies"
+require 'active_support/all'
+require 'prismic'
 
 map "/preview" do
   run PrismicRuby
 end
 
 class PrismicRuby < Sinatra::Base
+  register Sinatra::Contrib
   get '' do
-    # preview_token = params[:token]
-    # redirect_url = api.preview_session(preview_token, link_resolver(), '/')
-    # cookies[Prismic::PREVIEW_COOKIE] = { value: preview_token, expires: 30.minutes.from_now }
-    puts "////////////////////////////////////"
-    puts "Preview endpoint is working"
-    "Preview endpoint is working"
-    puts "////////////////////////////////////"
-    redirect '/'
+    api = Prismic.api('https://fove.prismic.io/api')
+    preview_token = params[:token]
+    puts "//////////////////////"
+    puts "Preview Token"
+    puts preview_token.inspect
+    puts "//////////////////////"
+    redirect_url = api.preview_session(preview_token, link_resolver(maybe_ref), '/')
+    puts [Prismic::PREVIEW_COOKIE].inspect
+    cookies[Prismic::PREVIEW_COOKIE] = { value: preview_token, expires: 30.minutes.from_now }
+    redirect redirect_url
   end
 
+  # For a given document, describes its URL on your front-office.
+  # You really should edit this method, so that it supports all the document types your users might link to.
+  #
+  # Beware: doc is not a Prismic::Document, but a Prismic::Fragments::DocumentLink,
+  # containing only the information you already have without querying more (see DocumentLink documentation)
   # If something goes wrong, it could be because of an invalid preview token
+  def link_resolver(maybe_ref)
+    @link_resolver ||= Prismic::LinkResolver.new(maybe_ref) {|doc_link|
+      puts "////////////////////////////////"
+      puts "Doc Link"
+      puts doc_link.type.inspect
+      puts doc_link.inspect
+      puts "////////////////////////////////"
+      return '#' if doc_link.broken?
+      case doc_link.type
+      when "main-article"
+        "http://localhost:4567/"
+      when "faq"
+        # "http://localhost:4567/#{doc_link.id}/#{doc_link.slug}"
+        # "http://localhost:4567/#{doc_link.slug}/"
+        "http://localhost:4567/faq"
+      else
+        raise "link_resolver doesn't know how to write URLs for #{doc_link.type} type."
+      end
+      # maybe_ref is not expected by document path, so it appends a ?ref=maybe_ref to the URL;
+      # since maybe_ref is nil when on master ref, it appends nothing.
+      # You should do the same for every path method used here in the link_resolver and elsewhere in your app,
+      # so links propagate the ref id when you're previewing future content releases.
+    }
+  end
+
+  #Helpers
+  def maybe_ref
+    @maybe_ref ||= (params[:ref].blank? ? nil : params[:ref])
+  end
+
   def clearcookies
+    puts "Clear Cookies"
     cookies.delete Prismic::PREVIEW_COOKIE
     redirect '/'
   end
@@ -160,6 +207,11 @@ class PrismicRuby < Sinatra::Base
     else
       nil
     end
+
+  end
+
+  def api
+    @api ||= Prismic.api('https://fove.prismic.io/api') || PrismicService.init_api
   end
 
 end
