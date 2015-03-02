@@ -19,3 +19,6 @@
 
 # Ignore creds
 aws.yml
+
+# Ignore prismic yml
+prismic.yml
