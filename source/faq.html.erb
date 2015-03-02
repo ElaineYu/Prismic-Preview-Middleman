@@ -1,10 +1,11 @@
 <h2>FAQ</h2>
+<br>
 
 <!-- PRISMIC PREVIEW TEST -->
 <% @faq.each do |doc| %>
   <% doc["faq-category.qa"].group_documents.each do |segment| %>
-    <%= segment.fragments["question"].value %>
-    <%= segment.fragments["answer"].value %>
+    <h3 style="color: blue"><%= segment.fragments["question"].value %><h3>
+    <h3><%= segment.fragments["answer"].value %></h3>
   <% end %>
 <% end %>
 <!-- PRISMIC PREVIEW TEST END  -->
