@@ -104,6 +104,7 @@ require 'sinatra'
 require 'sinatra/base'
 require 'sinatra/contrib/all'
 require "sinatra/cookies"
+require 'active_support'
 require 'active_support/all'
 require 'prismic'
 
@@ -114,7 +115,7 @@ end
 class PrismicRuby < Sinatra::Base
   register Sinatra::Contrib
   get '' do
-    api = Prismic.api('https://fove.prismic.io/api')
+    api = Prismic.api('https://middleman-sandbox.cdn.prismic.io/api')
     preview_token = params[:token]
     puts "//////////////////////"
     puts "Preview Token"
@@ -142,8 +143,8 @@ class PrismicRuby < Sinatra::Base
       return '#' if doc_link.broken?
       case doc_link.type
       when "main-article"
-        "http://localhost:4567/"
-      when "faq"
+        "http://localhost:4567"
+      when "fa-category"
         # "http://localhost:4567/#{doc_link.id}/#{doc_link.slug}"
         # "http://localhost:4567/#{doc_link.slug}/"
         "http://localhost:4567/faq"
