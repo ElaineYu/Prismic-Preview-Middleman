@@ -2,7 +2,7 @@
 
 <!-- PRISMIC PREVIEW TEST -->
 <% @faq.each do |doc| %>
-  <% doc["faq.qa"].group_documents.each do |segment| %>
+  <% doc["faq-category.qa"].group_documents.each do |segment| %>
     <%= segment.fragments["question"].value %>
     <%= segment.fragments["answer"].value %>
   <% end %>
