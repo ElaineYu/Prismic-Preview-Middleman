@@ -183,8 +183,9 @@ class PrismicRuby < Sinatra::Base
 
   end
 
+  #Open API access visibility for now
   def api
-    @api ||= Prismic.api('https://fove.prismic.io/api') || PrismicService.init_api
+    @api ||= Prismic.api('https://middleman-sandbox.cdn.prismic.io/api') || PrismicService.init_api
   end
 
 end
