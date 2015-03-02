@@ -1,5 +1,12 @@
 ##### Local Setup
 
+In Prismic:
+
+Site name: Middleman-Sandbox-Local-Preview
+
+Preview URL: http://localhost:4567/preview
+
+
 1. **Bundle Gems**
 
   <code> bundle install </code>
