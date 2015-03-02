@@ -90,33 +90,6 @@ configure :build do
   # set :http_prefix, "/Content/images/"
 end
 
-
-# ENV = YAML::load(File.open('aws.yml'))
-
-# Configuration code for Middleman AWS S3 Sync
-activate :s3_sync do |s3_sync|
-  s3_sync.bucket                     = 'staging-fove' # The name of the S3 bucket you are targetting. This is globally unique.
-  s3_sync.region                     = 'us-west-1'     # The AWS region for your bucket.
-  s3_sync.aws_access_key_id          = ENV['AWS_ACCESS_KEY_ID']
-  s3_sync.aws_secret_access_key      = ENV['AWS_SECRET_KEY']
-  #s3_sync.delete                     = true # We delete stray files by default.
-  #s3_sync.after_build                = true # We do not chain after the build step by default.
-end
-
-# CloudFront cache invalidation
-activate :cloudfront do |cf|
-  cf.access_key_id                   = ENV['AWS_ACCESS_KEY_ID']
-  cf.secret_access_key               = ENV['AWS_SECRET_KEY']
-  cf.distribution_id                 = ENV['STAGING_CLOUDFRONT_DISTRIBUTION_ID']
-  cf.filter                          = /\.html$/i
-  #cf.after_build                     = false  # default is false
-end
-
-after_s3_sync do |files_by_status|
-  invalidate files_by_status[:updated]
-end
-
-
 # PRISMIC PREVIEW EXPERIMENT
 
 ######## CREATE A PREVIEW ENDPOINT ##############
