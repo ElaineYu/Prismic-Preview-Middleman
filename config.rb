@@ -116,14 +116,19 @@ class PrismicRuby < Sinatra::Base
   register Sinatra::Contrib
   get '' do
     api = Prismic.api('https://middleman-sandbox.cdn.prismic.io/api')
+    cookies.delete Prismic::PREVIEW_COOKIE
     preview_token = params[:token]
     puts "//////////////////////"
     puts "Preview Token"
     puts preview_token.inspect
     puts "//////////////////////"
     redirect_url = api.preview_session(preview_token, link_resolver(maybe_ref), '/')
-    puts [Prismic::PREVIEW_COOKIE].inspect
     cookies[Prismic::PREVIEW_COOKIE] = { value: preview_token, expires: 30.minutes.from_now, http_only: false }
+    puts "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
+    puts "Inspect Cookies"
+    puts cookies.inspect
+    # puts cookies[Prismic::PREVIEW_COOKIE].inspect
+    puts "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
     redirect redirect_url
   end
 
