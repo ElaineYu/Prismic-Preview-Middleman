@@ -123,7 +123,7 @@ class PrismicRuby < Sinatra::Base
     puts "//////////////////////"
     redirect_url = api.preview_session(preview_token, link_resolver(maybe_ref), '/')
     puts [Prismic::PREVIEW_COOKIE].inspect
-    cookies[Prismic::PREVIEW_COOKIE] = { value: preview_token, expires: 30.minutes.from_now }
+    cookies[Prismic::PREVIEW_COOKIE] = { value: preview_token, expires: 30.minutes.from_now, http_only: false }
     redirect redirect_url
   end
 
