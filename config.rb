@@ -144,7 +144,7 @@ class PrismicRuby < Sinatra::Base
       case doc_link.type
       when "main-article"
         "http://localhost:4567"
-      when "fa-category"
+      when "faq-category"
         # "http://localhost:4567/#{doc_link.id}/#{doc_link.slug}"
         # "http://localhost:4567/#{doc_link.slug}/"
         "http://localhost:4567/faq"
